@@ -38,14 +38,14 @@ Route::post('/register', [LoginController::class, 'register']);
 // });
 
 Route::get('/tags/{tag_id}', function($tag_id){
-    // $user = Auth::user();
+    $user = Auth::user();
     $tags = Tag::where('user_id', 4)->get();
     if($tag_id === 'all'){
         $tasks = Tag::select('tasks.*', 'tags.title as tags_title','tags.id as tags_id')->leftJoin('tasks','tags.id','=','tasks.tag_id')->where('tags.user_id',4)->get();
     }else{
         $tasks = Tag::select('tasks.*','tags.title as tags_title', 'tags.id as tags_id')->leftJoin('tasks', 'tags.id','=','tasks.tag_id')->where('tags.user_id', 4)->where('tags.id', $tag_id)->get();
     }
-    return compact('tags','tasks');
+    return compact('tags','tasks','user');
 });
 
 
