@@ -49,5 +49,5 @@ Route::post('/tag/create', function(Request $request){
 });
 
 Route::get('/hoge', function () {
-    return User::all();
+    return Tag::all();
 });
