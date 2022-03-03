@@ -46,3 +46,7 @@ Route::post('/tag/create', function(Request $request){
     $tags = Tag::where('user_id', $user->id)->get();
     return $tags;
 });
+
+Route::get('/hoge', function () {
+    return 'hoge';
+});
