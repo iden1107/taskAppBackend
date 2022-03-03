@@ -27,7 +27,8 @@ Route::post('/register', [LoginController::class, 'register']);
 
 Route::get('/tags/{tag_id}', function($tag_id){
     $user = Auth::user();
-    $tags = Tag::where('user_id', $user->id)->get();
+    // $tags = Tag::where('user_id', $user->id)->get();
+    $tags = Tag::all();
     if($tag_id === 'all'){
         $tasks = Tag::select('tasks.*', 'tags.title as tags_title','tags.id as tags_id')->leftJoin('tasks','tags.id','=','tasks.tag_id')->where('tags.user_id',$user->id)->get();
     }else{
