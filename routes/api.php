@@ -6,6 +6,7 @@ use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Tag;
 use App\Models\Task;
+use App\Models\User;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -48,5 +49,5 @@ Route::post('/tag/create', function(Request $request){
 });
 
 Route::get('/hoge', function () {
-    return 'hoge';
+    return User::all();
 });
