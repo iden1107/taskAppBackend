@@ -27,12 +27,21 @@ Route::post('/register', [LoginController::class, 'register']);
 
 Route::get('/tags/{tag_id}', function($tag_id){
     $user = Auth::user();
+    $tags = Tag::where('user_id', $user->id)->get();
     if($tag_id === 'all'){
-        $tags = Tag::where('user_id', $user->id)->get();
-        $tasks = Task::select('tasks.*', 'tags.title as tags_title')->leftJoin('tags', 'tasks.tag_id', '=', 'tags.id')->where('tasks.user_id', $user->id)->get();
+        $tasks = Tag::select('tasks.*', 'tags.title as tags_title','tags.id as tags_id')->leftJoin('tasks','tags.id','=','tasks.tag_id')->where('tags.user_id',$user->id)->get();
     }else{
-        $tags = Tag::where('user_id', $user->id)->get();
-        $tasks = Task::select('tasks.*', 'tags.title as tags_title')->leftJoin('tags', 'tasks.tag_id', '=', 'tags.id')->where('tasks.user_id', $user->id)->where('tasks.tag_id', $tag_id)->get();
+        $tasks = Tag::select('tasks.*','tags.title as tags_title', 'tags.id as tags_id')->leftJoin('tasks', 'tags.id','=','tasks.tag_id')->where('tags.user_id', $user->id)->where('tags.id', $tag_id)->get();
     }
     return compact('tags','tasks');
+});
+
+Route::post('/tag/create', function(Request $request){
+    $user = Auth::user();
+    Tag::create([
+        'title' => $request->title,
+        'user_id' => $user->id
+    ]);
+    $tags = Tag::where('user_id', $user->id)->get();
+    return $tags;
 });
