@@ -29,13 +29,13 @@ Route::post('/register', [LoginController::class, 'register']);
 // !!!! $userがnullになってしまうのでうまくいかない
 Route::get('/tags/{tag_id}', function($tag_id){
     $user = Auth::user();
-    $tags = Tag::where('user_id', $user->id)->get();
-    if($tag_id === 'all'){
-        $tasks = Tag::select('tasks.*', 'tags.title as tags_title','tags.id as tags_id')->leftJoin('tasks','tags.id','=','tasks.tag_id')->where('tags.user_id',$user->id)->get();
-    }else{
-        $tasks = Tag::select('tasks.*','tags.title as tags_title', 'tags.id as tags_id')->leftJoin('tasks', 'tags.id','=','tasks.tag_id')->where('tags.user_id', $user->id)->where('tags.id', $tag_id)->get();
-    }
-    return compact('tags','tasks');
+    // $tags = Tag::where('user_id', $user->id)->get();
+    // if($tag_id === 'all'){
+    //     $tasks = Tag::select('tasks.*', 'tags.title as tags_title','tags.id as tags_id')->leftJoin('tasks','tags.id','=','tasks.tag_id')->where('tags.user_id',$user->id)->get();
+    // }else{
+    //     $tasks = Tag::select('tasks.*','tags.title as tags_title', 'tags.id as tags_id')->leftJoin('tasks', 'tags.id','=','tasks.tag_id')->where('tags.user_id', $user->id)->where('tags.id', $tag_id)->get();
+    // }
+    return compact('user');
 });
 
 
