@@ -20,7 +20,7 @@ use App\Models\User;
 
 
 Route::get('/user', function (Request $request) {
-    return Auth::user();
+    return 'user';
 });
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
