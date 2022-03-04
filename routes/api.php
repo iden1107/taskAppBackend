@@ -40,12 +40,6 @@ Route::get('/tags/{tag_id}', function($tag_id){
 
 
 
-Route::middleware('auth:sanctum')->get('/auth', function(){
-    $user = Auth::user();
-    return compact('user');
-});
-
-
 Route::post('/tag/create', function(Request $request){
     $user = Auth::user();
     Tag::create([
