@@ -19,7 +19,10 @@ use App\Models\User;
 */
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return Auth::user();
+    Route::get('/auth', function () {
+        $user = Auth::user();
+        return compact('user');
+    });
 });
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout']);
@@ -40,10 +43,7 @@ Route::get('/tags/{tag_id}', function($tag_id){
 
 
 Route::group(['middleware' => 'auth'], function () {
-    Route::get('/auth', function(){
-        $user = Auth::user();
-        return compact('user');
-    });
+
 });
 
 
