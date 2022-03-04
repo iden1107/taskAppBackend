@@ -40,7 +40,7 @@ Route::post('/register', [LoginController::class, 'register']);
 
 Route::get('/tags/{tag_id}', function($tag_id){
 
-    auth('sanctum')->user();
+    return auth('sanctum')->user();
 });
 
 
