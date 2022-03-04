@@ -37,6 +37,10 @@ Route::get('/tags/{tag_id}', function($tag_id){
     }
     return compact('tags','tasks');
 });
+Route::get('/auth', function(){
+    $user = Auth::user();
+    return compact('user');
+});
 
 
 Route::post('/tag/create', function(Request $request){
