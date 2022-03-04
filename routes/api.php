@@ -19,13 +19,9 @@ use App\Models\User;
 */
 
 
-Route::get('/user', function (Request $request) {
-    return 'user';
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+    return Auth::user();
 });
-
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return Auth::user();
-// });
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout']);
 Route::post('/register', [LoginController::class, 'register']);
