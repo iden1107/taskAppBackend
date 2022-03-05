@@ -155,8 +155,8 @@ return [
     |
     */
 
-    // 'domain' => env('SESSION_DOMAIN'),
-    'domain' => '.herokuapp.com',
+    'domain' => env('SESSION_DOMAIN'),
+    // 'domain' => '.herokuapp.com',
 
     /*
     |--------------------------------------------------------------------------
