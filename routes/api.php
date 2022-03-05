@@ -38,7 +38,7 @@ Route::get('/tags/{tag_id}', function($tag_id){
     //     $tasks = Tag::select('tasks.*','tags.title as tags_title', 'tags.id as tags_id')->leftJoin('tasks', 'tags.id','=','tasks.tag_id')->where('tags.user_id', $user->id)->where('tags.id', $tag_id)->get();
     // }
     // return compact('tags','tasks');
-    return compact('hoge');
+    return 'hoge';
 });
 
 Route::post('/tag/create', function(Request $request){
