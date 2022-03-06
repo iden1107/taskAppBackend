@@ -155,8 +155,8 @@ return [
     |
     */
 
-    // 'domain' => env('SESSION_DOMAIN'),
-    'domain' => 'calm-earth-25205.herokuapp.com',
+    'domain' => env('SESSION_DOMAIN'),
+    // 'domain' => '.herokuapp.com',
 
     /*
     |--------------------------------------------------------------------------
