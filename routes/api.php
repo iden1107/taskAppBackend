@@ -49,6 +49,6 @@ Route::get('/chart/pie', [chartController::class, 'pie']);
 
 
 Route::get('/',function(){
-    return 'sample';
+    return 'debag';
 }
 );
