@@ -46,3 +46,9 @@ Route::get('/tag/tagDelete/{id}',[TagController::class, 'tagDelete']);
 // グラフ関連
 Route::get('/chart/bar', [chartController::class, 'bar']);
 Route::get('/chart/pie', [chartController::class, 'pie']);
+
+
+Route::get('/',function(){
+    return 'sample';
+}
+);
