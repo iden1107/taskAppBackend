@@ -10,6 +10,8 @@ class Tag extends Model
     use HasFactory;
     protected $fillable = [
         'title',
-        'user_id'
+        'user_id',
+        'color_label',
+        'status'
     ];
 }
