@@ -87,7 +87,8 @@ class TaskController extends Controller
     {
         $today = date("Y-m-d");
         $user = Auth::user();
-        $countUnfinished = Task::where('user_id', $user->id)
+        // $countUnfinished = Task::where('user_id', $user->id)
+        $countUnfinished = Task::where('user_id', 4)
             ->where('deadline_date','<=',$today)
             ->where('unfinished',0)
             ->where('status',1)
