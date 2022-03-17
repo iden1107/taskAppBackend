@@ -155,7 +155,7 @@ return [
     |
     */
 
-    'domain' => '.hajime-kamino.com',
+    'domain' => '.herokuapp.com',
     // 'domain' => env('SESSION_DOMAIN'),
 
     /*
