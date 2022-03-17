@@ -17,7 +17,7 @@ return [
 
     'stateful' => explode(',', env('SANCTUM_STATEFUL_DOMAINS', sprintf(
         '%s%s',
-        'www.hajime-kamino.com,localhost,localhost:3000,127.0.0.1,127.0.0.1:8000,::1',
+        'shrouded-shore-75893.herokuapp.com,frontend.hajime-kamino.com,localhost,localhost:3000,127.0.0.1,127.0.0.1:8000,::1',
         Sanctum::currentApplicationUrlWithPort()
     ))),
 
