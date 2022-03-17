@@ -31,6 +31,10 @@ class TaskController extends Controller
             ->where('tasks.status', 1)
             ->get();
         }
+        $tag = 'hoge';
+        $tags = Tag::all();
+        $tasks = Task::all();
+        
         return compact('tags','tasks','tag','user');
     }
 
