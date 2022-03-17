@@ -9,8 +9,6 @@ use App\Models\Tag;
 use App\Models\Task;
 
 
-
-// !!!! $userがnullになってしまうのでうまくいかない
 class TaskController extends Controller
 {
     public function show($tag_id){
@@ -70,7 +68,6 @@ class TaskController extends Controller
 
     public function taskDelete (Request $request, $id)
     {
-
         if($request->unfinished){
             Task::where('id', $id)->update([
                 'status' => 0

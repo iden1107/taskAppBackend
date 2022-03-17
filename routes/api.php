@@ -37,9 +37,7 @@ Route::group(["middleware" => ["auth:sanctum"]], function () {
     Route::post('/tag/create',[TagController::class, 'create']);
     Route::post('/tag/update/{id}',[TagController::class, 'update']);
     Route::post('/tag/tagDelete/{id}',[TagController::class, 'tagDelete']);
-
     Route::get('/tag/tagDelete/{id}',[TagController::class, 'tagDelete']);
-
 
     // グラフ関連
     Route::get('/chart/bar', [chartController::class, 'bar']);
