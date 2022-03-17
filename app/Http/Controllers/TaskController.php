@@ -14,27 +14,24 @@ use App\Models\Task;
 class TaskController extends Controller
 {
     public function show($tag_id){
-        // $user = Auth::user();
-        // $tags = Tag::where('user_id', $user->id)->where('status', 1)->get();
-        // $tag = Tag::where('user_id', $user->id)->where('status', 1)->where('id',$tag_id)->get();
-        // if($tag_id === 'all'){
-        //     $tasks = Task::select('tasks.*', 'tags.title as tags_title','tags.id as tags_id',)
-        //     ->leftJoin('tags','tasks.tag_id','=','tags.id')
-        //     ->where('tags.user_id',$user->id)
-        //     ->where('tasks.status',1)
-        //     ->get();
-        // }else{
-        //     $tasks = Task::select('tasks.*','tags.title as tags_title', 'tags.id as tags_id')
-        //     ->leftJoin('tags', 'tasks.tag_id', '=', 'tags.id')
-        //     ->where('tags.user_id', $user->id)
-        //     ->where('tags.id', $tag_id)
-        //     ->where('tasks.status', 1)
-        //     ->get();
-        // }
-        $tag = 'hoge';
-        $tags = Tag::all();
-        $tasks = Task::all();
-        return compact('tags','tasks','tag');
+        $user = Auth::user();
+        $tags = Tag::where('user_id', $user->id)->where('status', 1)->get();
+        $tag = Tag::where('user_id', $user->id)->where('status', 1)->where('id',$tag_id)->get();
+        if($tag_id === 'all'){
+            $tasks = Task::select('tasks.*', 'tags.title as tags_title','tags.id as tags_id',)
+            ->leftJoin('tags','tasks.tag_id','=','tags.id')
+            ->where('tags.user_id',$user->id)
+            ->where('tasks.status',1)
+            ->get();
+        }else{
+            $tasks = Task::select('tasks.*','tags.title as tags_title', 'tags.id as tags_id')
+            ->leftJoin('tags', 'tasks.tag_id', '=', 'tags.id')
+            ->where('tags.user_id', $user->id)
+            ->where('tags.id', $tag_id)
+            ->where('tasks.status', 1)
+            ->get();
+        }
+        return compact('tags','tasks','tag','user');
     }
 
     public function create (Request $request){
@@ -87,8 +84,7 @@ class TaskController extends Controller
     {
         $today = date("Y-m-d");
         $user = Auth::user();
-        // $countUnfinished = Task::where('user_id', $user->id)
-        $countUnfinished = Task::where('user_id', 4)
+        $countUnfinished = Task::where('user_id', $user->id)
             ->where('deadline_date','<=',$today)
             ->where('unfinished',0)
             ->where('status',1)
