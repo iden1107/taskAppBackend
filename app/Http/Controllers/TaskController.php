@@ -31,7 +31,7 @@ class TaskController extends Controller
             ->where('tasks.status', 1)
             ->get();
         }
-        return compact('tags','tasks','tag');
+        return compact('tags','tasks','tag','user');
     }
 
     public function create (Request $request){

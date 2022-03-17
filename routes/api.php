@@ -27,28 +27,25 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // Route::post('/logout', [LoginController::class, 'logout']);
 // Route::post('/register', [LoginController::class, 'register']);
 
-// タスク関連
-Route::get('/tags/{tag_id}',[TaskController::class, 'show']);
-Route::post('/task/create',[TaskController::class, 'create']);
-Route::post('/task/update/{id}', [TaskController::class, 'update']);
-Route::post('/task/toggleUnfinished/{id}', [TaskController::class, 'toggleUnfinished']);
-Route::post('/task/taskDelete/{id}', [TaskController::class, 'taskDelete']);
-Route::get('/task/countUnfinished', [TaskController::class, 'countUnfinished']);
 
-// タグ関連
-Route::post('/tag/create',[TagController::class, 'create']);
-Route::post('/tag/update/{id}',[TagController::class, 'update']);
-Route::post('/tag/tagDelete/{id}',[TagController::class, 'tagDelete']);
+Route::group(["middleware" => ["auth:sanctum"]], function () {
+    // タスク関連
+    Route::get('/tags/{tag_id}',[TaskController::class, 'show']);
+    Route::post('/task/create',[TaskController::class, 'create']);
+    Route::post('/task/update/{id}', [TaskController::class, 'update']);
+    Route::post('/task/toggleUnfinished/{id}', [TaskController::class, 'toggleUnfinished']);
+    Route::post('/task/taskDelete/{id}', [TaskController::class, 'taskDelete']);
+    Route::get('/task/countUnfinished', [TaskController::class, 'countUnfinished']);
 
-Route::get('/tag/tagDelete/{id}',[TagController::class, 'tagDelete']);
+    // タグ関連
+    Route::post('/tag/create',[TagController::class, 'create']);
+    Route::post('/tag/update/{id}',[TagController::class, 'update']);
+    Route::post('/tag/tagDelete/{id}',[TagController::class, 'tagDelete']);
 
-
-// グラフ関連
-Route::get('/chart/bar', [chartController::class, 'bar']);
-Route::get('/chart/pie', [chartController::class, 'pie']);
+    Route::get('/tag/tagDelete/{id}',[TagController::class, 'tagDelete']);
 
 
-Route::get('/',function(){
-    return 'debag';
-}
-);
+    // グラフ関連
+    Route::get('/chart/bar', [chartController::class, 'bar']);
+    Route::get('/chart/pie', [chartController::class, 'pie']);
+});
