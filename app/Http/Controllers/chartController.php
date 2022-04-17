@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\DB;
 
 class chartController extends Controller
 {
-
     public function bar(){
         $year = date("Y");
         $month = date("m");

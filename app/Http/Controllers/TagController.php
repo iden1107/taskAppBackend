@@ -33,8 +33,9 @@ class TagController extends Controller
         $user = Auth::user();
 
         // タグに付随するタスクがあるかないかを判断
-        $tasks = Task::where('user_id', $user->id)->select('tasks.*', 'tags.title as tags_title','tags.id as tags_id')
-            ->leftJoin('tags', 'tasks.tag_id', '=', 'tags.id')
+        $tasks = Task::leftJoin('tags', 'tasks.tag_id', '=', 'tags.id')
+            ->select('tasks.*')
+            ->where('tasks.user_id', $user->id)
             ->where('tags.id',$id)
             ->get();
 
